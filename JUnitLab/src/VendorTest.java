@@ -16,7 +16,10 @@ public class VendorTest{
 
     @Test
     void buyItemTest(){
-
+        Vending bob = new Vending(5, 3);
+        bob.addMoney(1.25);
+        bob.select("Candy");
+        assertEquals(0,bob.getBalance(), "Bob Bought 1 candy");
     }
 
     @Test
