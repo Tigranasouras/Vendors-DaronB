@@ -79,7 +79,3 @@ class Vending {
 
 
 }
-
-class Examples {
-}
-
