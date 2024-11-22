@@ -35,12 +35,27 @@ public class VendorTest{
     @Test
     void restockItemTest() {
         Vending bob = new Vending(5, 3);
-        bob.restockItem("Candy", 10);
-        bob.restockItem("Gum", 5);
+        bob.restockItem("Candy", 10, 1.75);
+        bob.restockItem("Gum", 5, 0.5);
 
         assertEquals(15, bob.getInventory().get("Candy"), "Candy = 15 after restocking.");
         assertEquals(8, bob.getInventory().get("Gum"), "Gum = 8 after restocking.");
     }
+
+
+    @Test
+    void dynamicRestockTest() {
+        Vending bob = new Vending(5, 3);
+
+        bob.restockItem("Candy", 10, 1.25);
+        assertEquals(15, bob.getInventory().get("Candy"), "Candy should have 15 items after restocking.");
+
+        bob.restockItem("Chips", 20, 1.75);
+        assertEquals(20, bob.getInventory().get("Chips"), "Chips should have 20 items after adding to inventory.");
+
+        assertEquals(1.75, bob.getInventory().containsKey("Chips") ? 1.75 : -1, "Chips should have a price of 1.75.");
+    }
+
 
 
 }

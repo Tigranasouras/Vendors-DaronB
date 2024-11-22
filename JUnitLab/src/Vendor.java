@@ -76,12 +76,13 @@ class Vending {
             Stock.get(name).stock = 0;
         }
     }
-    void restockItem(String name, int amount) {
+    void restockItem(String name, int amount, double price) {
         if (Stock.containsKey(name)) {
             Stock.get(name).restock(amount);
             System.out.println(name + " restocked by " + amount + " amount.");
         } else {
-            System.out.println("Sorry, cannot restock unknown item: " + name);
+            Stock.put(name, new Item(price, amount));
+            System.out.println("Item has now been restocked: " + name);
         }
     }
 
