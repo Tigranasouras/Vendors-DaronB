@@ -3,8 +3,9 @@
  * Backend File for running tests
  */
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashMap;
+
 
 public class VendorTest{
     @Test
@@ -23,8 +24,15 @@ public class VendorTest{
     }
 
     @Test
-    void emptyVendorInventoryTest(){
+    void emptyVendorInventoryTest() {
+        Vending bob = new Vending(1, 0);
+        bob.emptyInventory();
 
+        HashMap<String, Integer> inventory = bob.getInventory(); // Get the inventory after emptying
+
+
+        assertEquals(0, inventory.get("Candy"), "Candy stock should be 0 after emptying.");
+        assertEquals(0, inventory.get("Gum"), "Gum stock should be 0 after emptying.");
     }
 
 

@@ -60,6 +60,24 @@ class Vending {
         else System.out.println("Sorry, don't know that item");
     }
 
+
+    /** Gets a copy of the current inventory */
+    HashMap<String, Integer> getInventory() {
+        HashMap<String, Integer> inventory = new HashMap<>();
+        for (String name : Stock.keySet()) {
+            inventory.put(name, Stock.get(name).stock);
+        }
+        return inventory;
+    }
+
+    /** Empties the inventory */
+    void emptyInventory() {
+        for (String name : Stock.keySet()) {
+            Stock.get(name).stock = 0;
+        }
+    }
+
+
 }
 
 class Examples {
