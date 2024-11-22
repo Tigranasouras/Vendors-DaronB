@@ -28,11 +28,18 @@ public class VendorTest{
         Vending bob = new Vending(1, 0);
         bob.emptyInventory();
 
-        HashMap<String, Integer> inventory = bob.getInventory(); // Get the inventory after emptying
+        assertEquals(0, bob.getInventory().get("Candy"), "Candy stock should be 0 after emptying.");
+        assertEquals(0, bob.getInventory().get("Gum"), "Gum stock should be 0 after emptying.");
+    }
 
+    @Test
+    void restockItemTest() {
+        Vending bob = new Vending(5, 3);
+        bob.restockItem("Candy", 10);
+        bob.restockItem("Gum", 5);
 
-        assertEquals(0, inventory.get("Candy"), "Candy stock should be 0 after emptying.");
-        assertEquals(0, inventory.get("Gum"), "Gum stock should be 0 after emptying.");
+        assertEquals(15, bob.getInventory().get("Candy"), "Candy = 15 after restocking.");
+        assertEquals(8, bob.getInventory().get("Gum"), "Gum = 8 after restocking.");
     }
 
 
