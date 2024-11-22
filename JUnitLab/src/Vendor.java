@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
 
-//• As a User, I would like to restock items on a vendor so players can buy from him later. (Done)
-//• As a User, I would like items added to the vendor’s inventory when restocking if they were unavailable so that the Vendor’s inventory can change over time.
+// (Done)• As a User, I would like to restock items on a vendor so players can buy from him later.
+// (Done)• As a User, I would like items added to the vendor’s inventory when restocking if they were unavailable so that the Vendor’s inventory can change over time.
 //As a User, I would like to change the Name of an item at a vendor, so it is easy to manage the vendor-available items.
 //• As a User, I would like for the vendor system to manage and print the inventory of 5 different vendors so that I can have multiple vendors available.
 //As a User, I would like to remove an item from the vendor’s inventory if it is discontinued or no longer available.
