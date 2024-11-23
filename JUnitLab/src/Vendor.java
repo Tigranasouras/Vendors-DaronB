@@ -5,7 +5,7 @@ import java.util.HashMap;
 // (Done)• As a User, I would like items added to the vendor’s inventory when restocking if they were unavailable so that the Vendor’s inventory can change over time.
 // (DONE) As a User, I would like to change the Name of an item at a vendor, so it is easy to manage the vendor-available items.
 //• As a User, I would like for the vendor system to manage and print the inventory of 5 different vendors so that I can have multiple vendors available.
-//As a User, I would like to remove an item from the vendor’s inventory if it is discontinued or no longer available.
+//(DONE) As a User, I would like to remove an item from the vendor’s inventory if it is discontinued or no longer available.
 //As a User, I would like the vendor system to track customer purchases for each item, providing insights on popular items and trends.
 // (DONE) As a User, I would like to check an item’s description or details before purchasing, so I can make informed choices on item benefits and uses.
 //As a User, I would like to apply discounts to specific items or categories within the vendor’s inventory, allowing for seasonal sales or promotions.
@@ -110,7 +110,15 @@ class Vending {
         }
     }
 
-
+    /** Removes an item from inventory */
+    void removeItem(String name) {
+        if (Stock.containsKey(name)) {
+            Stock.remove(name);
+            System.out.println("Item " + name + " has been removed from inventory.");
+        } else {
+            System.out.println("Item " + name + " not found. Cannot remove.");
+        }
+    }
 
 
 
