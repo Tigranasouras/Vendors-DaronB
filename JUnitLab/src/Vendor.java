@@ -3,11 +3,11 @@ import java.util.HashMap;
 
 // (Done)• As a User, I would like to restock items on a vendor so players can buy from him later.
 // (Done)• As a User, I would like items added to the vendor’s inventory when restocking if they were unavailable so that the Vendor’s inventory can change over time.
-//As a User, I would like to change the Name of an item at a vendor, so it is easy to manage the vendor-available items.
+// (DONE) As a User, I would like to change the Name of an item at a vendor, so it is easy to manage the vendor-available items.
 //• As a User, I would like for the vendor system to manage and print the inventory of 5 different vendors so that I can have multiple vendors available.
 //As a User, I would like to remove an item from the vendor’s inventory if it is discontinued or no longer available.
 //As a User, I would like the vendor system to track customer purchases for each item, providing insights on popular items and trends.
-//As a User, I would like to check an item’s description or details before purchasing, so I can make informed choices on item benefits and uses.
+// (DONE) As a User, I would like to check an item’s description or details before purchasing, so I can make informed choices on item benefits and uses.
 //As a User, I would like to apply discounts to specific items or categories within the vendor’s inventory, allowing for seasonal sales or promotions.
 // As a User, I would like for certain items to be marked as ”bestsellers” in the vendor’s inventory, enabling quicker access to commonly purchased items.
 
@@ -20,8 +20,8 @@ class Vending {
     private double balance;
 
     Vending(int numCandy, int numGum) {
-        Stock.put("Candy", new Item(1.25, numCandy));
-        Stock.put("Gum", new Item(.5, numGum));
+        Stock.put("Candy", new Item(1.25, numCandy, "cool"));
+        Stock.put("Gum", new Item(.5, numGum, "sticky"));
         this.balance = 0;
     }
 
@@ -76,15 +76,40 @@ class Vending {
             Stock.get(name).stock = 0;
         }
     }
-    void restockItem(String name, int amount, double price) {
+    void restockItem(String name, int amount, double price, String description) {
         if (Stock.containsKey(name)) {
             Stock.get(name).restock(amount);
             System.out.println(name + " restocked by " + amount + " amount.");
         } else {
-            Stock.put(name, new Item(price, amount));
+            Stock.put(name, new Item(price, amount, description));
             System.out.println("Item has now been restocked: " + name);
         }
     }
+
+    /** Changes the name of an item in the stock */
+    void renameItem(String oldName, String newName) {
+        if (Stock.containsKey(oldName)) {
+            Item item = Stock.remove(oldName); // gets rid of old
+            Stock.put(newName, item);          // puts the new
+            System.out.println("Item renamed from " + oldName + " to " + newName);
+        } else {
+            System.out.println("Item " + oldName + " not found. Rename failed.");
+        }
+    }
+
+    /** Displays details of an item */
+    void getItemDetails(String name) {
+        if (Stock.containsKey(name)) {
+            Item item = Stock.get(name);
+            System.out.println("Item: " + name);
+            System.out.println("Price: $" + item.price);
+            System.out.println("Stock: " + item.stock);
+            System.out.println("Description: " + item.description);
+        } else {
+            System.out.println("Sorry, item " + name + " is not available.");
+        }
+    }
+
 
 
 
